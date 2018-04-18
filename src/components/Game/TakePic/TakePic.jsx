@@ -67,7 +67,7 @@ class TakePic extends React.Component {
       this.props.doTakePhoto(this.convertVideoToImage());
     }
     const handelSubmitPicture = () => {
-      this.props.doSavePhoto();
+      this.props.doSavePhoto(this.props.photo.image);
     }
     const handleRevertPicture = () => {
       this.props.doDiscardPhoto();

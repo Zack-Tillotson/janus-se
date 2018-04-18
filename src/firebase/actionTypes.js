@@ -7,4 +7,5 @@ export default {
   setData: `${namespace}/setData`,
   requestAuth: `${namespace}/requestAuth`,
   requestUnauth: `${namespace}/requestUnauth`,
+  requestSaveFile: `${namespace}/requestSaveFile`,
 }

@@ -17,6 +17,17 @@ function* handleGameStart() {
   yield takeEvery(types.requestStartGame, doStartGame);
 }
 
+function* doSavePhoto(action) {
+  const {imageData} = action.payload;
+
+  yield put(firebaseActions.requestSaveFile(`${uid}/image.png`, imageData));
+}
+
+function* handlePhoto() {
+  yield takeEvery(types.requestSavePhoto, doSavePhoto);
+}
+
 export default [
   handleGameStart,
+  handlePhoto,
 ]

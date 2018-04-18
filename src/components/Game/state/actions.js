@@ -15,9 +15,12 @@ function photoReceived(image) {
   }
 }
 
-function requestSavePhoto() {
+function requestSavePhoto(imageData) {
   return {
     type: types.requestSavePhoto,
+    payload: {
+      imageData,
+    },
   }
 }
 

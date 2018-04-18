@@ -26,6 +26,10 @@ function requestUnauth(service) {
   return {type: actionTypes.requestUnauth, payload: {service}};
 }
 
+function requestSaveFile(path, data) {
+  return {type: actionTypes.requestSaveFile, payload: {path, data}};
+}
+
 export default {
   dataReceived,
   syncConnection,
@@ -33,4 +37,5 @@ export default {
   setData,
   requestAuth,
   requestUnauth,
+  requestSaveFile,
 }

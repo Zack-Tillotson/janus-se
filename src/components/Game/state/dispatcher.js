@@ -9,9 +9,9 @@ export default function(dispatch) {
       dispatch(actions.photoReceived(imageData));
     },
     doSavePhoto(imageData) {
-      dispatch(actions.requestSavePhoto());
+      dispatch(actions.requestSavePhotoimageData
     },
-    doDiscardPhoto(imageData) {
+    doDiscardPhoto() {
       dispatch(actions.photoRejected());
     },
   }
