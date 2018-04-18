@@ -1,16 +1,32 @@
-.player-list {
-  margin: 1rem;
+.take-pic {
 
-  h1 {
-    display: inline-block;
-    border-bottom: solid 3px #0D3D65;
+  &__action-hint {
+    color: #666;
+    font-size: .7rem;
+    margin: 1rem 1rem 0 1rem;
   }
 
-  ul {
-    margin-top: 1rem;
+  h1 {
+    text-align: center;
+    color: white;
+    background: orange;
+    padding: 1rem;
+    margin: .25rem 0;
+  }
 
-    li {
-      margin-top: 1rem;
+  &__image {
+    margin: 1rem;
+
+    video, img {
+      width: 100%;
     }
+
+    canvas {
+      display: none;
+    }
+  }
+
+  &__controls {
+    margin: 1rem;
   }
 }
