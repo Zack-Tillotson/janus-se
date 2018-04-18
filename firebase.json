@@ -1,0 +1,13 @@
+{
+  "firebase": "jansus-se",
+  "public": "app",
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ],
+  "ignore": [
+    "app/tests/**"
+  ]
+}
