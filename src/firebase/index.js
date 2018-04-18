@@ -2,11 +2,7 @@ import utils from './utils';
 
 function requestAuth(service, onError) {
   const ref = utils.auth();
-  if(['google', 'twitter', 'facebook'].indexOf(service) >= 0) {
-    ref.authWithOAuthRedirect(service, onError);
-  } else if(service == 'anonymous') {
-    ref.signInAnonymously().catch(onError);
-  }
+  return ref.signInAnonymously().catch(onError);
 }
 
 function requestUnauth(service, onError) {
@@ -62,9 +58,15 @@ function syncData(onData, path = '/') {
   return ref;
 }
 
+function setData(path = '/', data) {
+  const ref = utils.connect(path);
+  return ref.set(data);
+}
+
 export default {
   requestAuth,
   requestUnauth,
   syncConnection,
   syncData,
+  setData,
 }

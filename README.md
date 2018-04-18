@@ -4,8 +4,8 @@ Zack Tillotson, Laura Zodrow, Wyatt Page
 ## Development
 
 ```
-npm install
-npm start
+yarn install
+yarn start
 open http://localhost:8888/
 ```
 

@@ -3,7 +3,9 @@ import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import rootReducer from './rootReducer';
 
-import firebaseSagas from '../../firebase/sagas';
+import firebaseSagas from 'firebase/sagas';
+import homepageSagas from 'components/Homepage/state/sagas';
+import gameSagas from 'components/Game/state/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,7 +19,11 @@ if(__DEBUG__) {
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, applyMiddleware(...middleware), initialState);
-  firebaseSagas.forEach(saga => sagaMiddleware.run(saga));
+  [
+    ...firebaseSagas,
+    ...homepageSagas,
+    ...gameSagas,
+  ].forEach(saga => sagaMiddleware.run(saga));
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {

@@ -3,12 +3,12 @@ import 'firebase/auth';
 import 'firebase/database';
 
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyANGQl60EULLmdhEmeI0Lqhr2G2qiQ4WqE",
-  authDomain: "zt-jumpstart.firebaseapp.com",
-  databaseURL: "https://zt-jumpstart.firebaseio.com",
-  projectId: "zt-jumpstart",
-  storageBucket: "",
-  messagingSenderId: "818204202137"
+  apiKey: "AIzaSyBBngH5y1nnVBApZjrr76bSeamNNl8rgnA",
+  authDomain: "janus-se.firebaseapp.com",
+  databaseURL: "https://janus-se.firebaseio.com",
+  projectId: "janus-se",
+  storageBucket: "janus-se.appspot.com",
+  messagingSenderId: "137613593993"
 });
 
 function connect(path) {

@@ -32,12 +32,19 @@ function* handleSyncingData() {
       yield dispatchData(data);
     }
   });
+
+  yield takeEvery(actionTypes.setData, function*(action) {
+    const {path, data} = action.payload;
+    return firebase.setData(path, data);
+  });
+}
+
+export function* requestAuth(action) {
+  return yield call(firebase.requestAuth, action.payload.service, error => {console.log("Firebase auth error!", error)});
 }
 
 function* handleLogin() {
-  yield takeEvery(actionTypes.requestAuth, function*(action) {
-    yield call(firebase.requestAuth, action.payload.service, error => {console.log("Firebase auth error!", error)});
-  });
+  yield takeEvery(actionTypes.requestAuth, requestAuth);
   yield takeEvery(actionTypes.requestUnauth, function*(action) {
     yield call(firebase.requestUnauth, error => {console.log("Firebase auth error!", error)});
   });
