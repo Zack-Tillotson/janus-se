@@ -7,10 +7,10 @@ import dispatcher from '../state/dispatcher';
 
 import './styles';
 
-function ScoreScreen({players, emotion, doStartGame}) {
+function ScoreScreen({players, emotion, doResetGame}) {
 
-  const handleStartGame = () => {
-    doStartGame();
+  const handleNewGame = () => {
+    doResetGame();
   }
 
   const sortedPlayers = Object.keys(players)
@@ -27,11 +27,14 @@ function ScoreScreen({players, emotion, doStartGame}) {
               {!!imageUrl && <img src={imageUrl} />}
               {!imageUrl && <img src="/assets/images/spinner.svg" />}
               <div className="player__name">{name}</div>
-              <div className="player__score">{score}</div>
+              {!!score && (<div className="player__score">{parseInt(score*10000)/100}%</div>)}
             </li>
           );
         })}
       </ol>
+      <div className="score-screen__controls">
+        <button onClick={handleNewGame}>New Game</button>
+      </div>
     </div>
   );
 }

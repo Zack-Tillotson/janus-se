@@ -10,6 +10,7 @@ import ScoreScreen from 'components/Game/ScoreScreen';
 import firebaseSelector from 'firebase/selector';
 import firebaseDispatcher from 'firebase/dispatcher';
 import gameSelector from 'components/Game/state/selector';
+import playerSelector from 'components/Game/state/playerSelector';
 import homepageSelector from 'components/Homepage/state/selector';
 
 class Application extends React.Component {
@@ -19,7 +20,7 @@ class Application extends React.Component {
   }
 
   getGameState = () => {
-    if(!this.props.firebase.isLoggedIn || !this.props.game.player.name) {
+    if(!this.props.firebase.isLoggedIn || !this.props.player.name) {
       return 'unauthenticated';
     } else if(this.props.game.player.score) {
       return 'postgame';
@@ -67,6 +68,7 @@ function metaSelector(state) {
     firebase: firebaseSelector(state),
     homepage: homepageSelector(state),
     game: gameSelector(state),
+    player: playerSelector(state),
   }
 }
 

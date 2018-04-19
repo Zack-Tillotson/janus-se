@@ -18,6 +18,9 @@ export default function(state = defaultState, action) {
         image: defaultState.image,
       };
     }
+    case types.requestJoinGame: {
+      return defaultState;
+    }
   }
   return state;
 }

@@ -26,26 +26,38 @@ class TakePic extends React.Component {
     }
   }
 
-  setupVideoStream = () => {
-    navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: {
-        width: {max: MAX_WIDTH},
-        height: {max: MAX_HEIGHT},
-        facingMode: 'user',
-      },
-    })
-      .then(stream => {
-        this.video.srcObject = stream;
+  componentWillUnmount() {
+    if(this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
 
-        this.video.onloadedmetadata = () => {
-          this.setState(() => ({hasVideo: ''}))
-          this.video.play();
-        }
+  setupVideoStream = () => {
+    this.setState(() => ({hasVideo: null}), () => {
+      if(!this.video) {
+        this.timeout = setTimeout(this.setupVideoStream, 500);
+        return;
+      }
+      navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: {
+          width: {max: MAX_WIDTH},
+          height: {max: MAX_HEIGHT},
+          facingMode: 'user',
+        },
       })
-      .catch(err => {
-        this.setState(() => ({hasVideo: err.toString()}))
-      });
+        .then(stream => {
+          this.video.srcObject = stream;
+
+          this.video.onloadedmetadata = () => {
+            this.setState(() => ({hasVideo: ''}))
+            this.video.play();
+          }
+        })
+        .catch(err => {
+          this.setState(() => ({hasVideo: err.toString()}))
+        });
+    });
   }
 
   convertVideoToImage() {

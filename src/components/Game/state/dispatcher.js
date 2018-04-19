@@ -5,6 +5,12 @@ export default function(dispatch) {
     doStartGame() {
       dispatch(actions.requestStartGame());
     },
+    doJoinGame() {
+      dispatch(actions.requestJoinGame());
+    },
+    doResetGame() {
+      dispatch(actions.requestResetGame());
+    },
     doTakePhoto(imageData) {
       dispatch(actions.photoReceived(imageData));
     },

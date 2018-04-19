@@ -6,6 +6,18 @@ function requestStartGame() {
   }
 }
 
+function requestJoinGame() {
+  return {
+    type: types.requestJoinGame,
+  }
+}
+
+function requestResetGame() {
+  return {
+    type: types.requestResetGame,
+  }
+}
+
 function photoReceived(image) {
   return {
     type: types.photoReceived,
@@ -32,6 +44,8 @@ function photoRejected() {
 
 export default {
   requestStartGame,
+  requestJoinGame,
+  requestResetGame,
   photoReceived,
   requestSavePhoto,
   photoRejected,

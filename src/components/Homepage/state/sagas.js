@@ -22,12 +22,13 @@ function* submitForm() {
 
   const {playerName: name} = yield select(selector);
   const {uid} = (yield select(firebaseSelector)).authInfo;
-  yield put(firebase.setData(`game/players/${uid}`, {name}));
+  yield put(firebase.setData(`players/${uid}`, {name}));
 }
 
-function* monitorData() {
+function* monitorData(action) {
   yield put(firebase.syncData('emotions'))
   yield put(firebase.syncData('game'));
+  yield put(firebase.syncData(`players/${action.payload.data.uid}`));
 }
 
 function* handleHomepage() {

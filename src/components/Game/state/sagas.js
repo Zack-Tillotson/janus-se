@@ -4,6 +4,8 @@ import util from './util';
 import types from './actionTypes';
 import selector from './selector';
 
+import playerSelector from './playerSelector';
+
 import firebaseSelector from 'firebase/selector';
 import firebaseTypes from 'firebase/actionTypes';
 import firebaseActions from 'firebase/actions';
@@ -16,8 +18,21 @@ function* doStartGame() {
   yield put(firebaseActions.setData('game/state', 'takingPics'));
 }
 
+function* doJoinGame() {
+  const player = (yield select(playerSelector));
+  const {uid} = (yield select(firebaseSelector)).authInfo;
+
+  yield put(firebaseActions.setData(`game/players/${uid}`, player));
+}
+
+function* doResetGame() {
+  yield put(firebaseActions.setData(`game`, null));
+}
+
 function* handleGameStart() {
   yield takeEvery(types.requestStartGame, doStartGame);
+  yield takeEvery(types.requestJoinGame, doJoinGame);
+  yield takeEvery(types.requestResetGame, doResetGame);
 }
 
 function* doSavePhoto(action) {

@@ -6,10 +6,14 @@ import dispatcher from '../state/dispatcher';
 
 import './styles';
 
-function PlayerList({players, doStartGame}) {
+function PlayerList({players, player, doStartGame, doJoinGame}) {
 
   const handleStartGame = () => {
     doStartGame();
+  }
+
+  const handleJoinGame = () => {
+    doJoinGame();
   }
 
   return (
@@ -25,7 +29,8 @@ function PlayerList({players, doStartGame}) {
           );
         })}
       </ul>
-      <button onClick={handleStartGame}>Start Game</button>
+      {!!player.name && <button onClick={handleStartGame} className="player-list__button--primary">Start Game</button>}
+      {!player.name && <button onClick={handleJoinGame}>Join Game</button>}
     </div>
   );
 }
