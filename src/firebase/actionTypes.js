@@ -8,4 +8,5 @@ export default {
   requestAuth: `${namespace}/requestAuth`,
   requestUnauth: `${namespace}/requestUnauth`,
   requestSaveFile: `${namespace}/requestSaveFile`,
+  fileUploadProgress: `${namespace}/fileUploadProgress`,
 }

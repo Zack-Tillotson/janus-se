@@ -3,7 +3,7 @@
   &__action-hint {
     color: #666;
     font-size: .7rem;
-    margin: 1rem 1rem 0 1rem;
+    margin: 1rem 1rem .25rem 1rem;
   }
 
   h1 {
@@ -11,14 +11,15 @@
     color: white;
     background: orange;
     padding: 1rem;
-    margin: .25rem 0;
   }
 
   &__image {
-    margin: 1rem;
 
     video, img {
       width: 100%;
+      max-width: 25rem;
+      margin: 0 auto;
+      display: block;
     }
 
     canvas {

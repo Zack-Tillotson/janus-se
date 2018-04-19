@@ -63,10 +63,16 @@ function setData(path = '/', data) {
   return ref.set(data);
 }
 
+function postFile(path = '/', file) {
+  const ref = utils.connectStorage(path);
+  return ref.putString(file, 'data_url');
+}
+
 export default {
   requestAuth,
   requestUnauth,
   syncConnection,
   syncData,
   setData,
+  postFile,
 }

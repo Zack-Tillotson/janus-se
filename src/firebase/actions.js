@@ -30,6 +30,10 @@ function requestSaveFile(path, data) {
   return {type: actionTypes.requestSaveFile, payload: {path, data}};
 }
 
+function fileUploadProgress(fullUrl, progress, isComplete) {
+  return {type: actionTypes.fileUploadProgress, payload: {fullUrl, progress, isComplete}};
+}
+
 export default {
   dataReceived,
   syncConnection,
@@ -38,4 +42,5 @@ export default {
   requestAuth,
   requestUnauth,
   requestSaveFile,
+  fileUploadProgress,
 }

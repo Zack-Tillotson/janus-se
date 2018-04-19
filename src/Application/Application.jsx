@@ -16,13 +16,13 @@ class Application extends React.Component {
 
   componentDidMount() {
     this.props.monitorConnection();
-    this.props.syncData('emotions');
-    this.props.syncData('game');
   }
 
   getGameState = () => {
-    if(!this.props.firebase.isLoggedIn || !this.props.homepage.hasEnteredName) {
+    if(!this.props.firebase.isLoggedIn || !this.props.game.player.name) {
       return 'unauthenticated';
+    } else if(this.props.game.player.score) {
+      return 'postgame';
     } else {
       return this.props.game.state;
     }

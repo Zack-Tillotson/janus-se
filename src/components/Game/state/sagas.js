@@ -1,8 +1,11 @@
-import {takeEvery, select, put} from 'redux-saga/effects';
+import {takeEvery, take, select, put, call} from 'redux-saga/effects';
 
+import util from './util';
 import types from './actionTypes';
 import selector from './selector';
 
+import firebaseSelector from 'firebase/selector';
+import firebaseTypes from 'firebase/actionTypes';
 import firebaseActions from 'firebase/actions';
 
 function* doStartGame() {
@@ -19,8 +22,24 @@ function* handleGameStart() {
 
 function* doSavePhoto(action) {
   const {imageData} = action.payload;
+  const {uid} = (yield select(firebaseSelector)).authInfo;
 
-  yield put(firebaseActions.requestSaveFile(`${uid}/image.png`, imageData));
+  yield put(firebaseActions.requestSaveFile(`photos/${uid}.png`, imageData));
+
+  const result = yield take(firebaseTypes.fileUploadProgress);
+
+  if(result.payload.error) {
+    console.log('Error', result.payload.error);
+    return;
+  }
+
+  const {fullUrl} = result.payload;
+  yield put(firebaseActions.setData(`game/players/${uid}/imageUrl`, fullUrl));
+
+  const {emotion} = (yield select(selector));
+
+  const score = yield call(util.analyzeImage, emotion, fullUrl);
+  yield put(firebaseActions.setData(`game/players/${uid}/score`, score));
 }
 
 function* handlePhoto() {

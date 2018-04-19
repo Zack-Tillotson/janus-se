@@ -1,3 +1,4 @@
+import actions from './actions';
 import actionTypes from './actionTypes';
 import {take, takeEvery, call, put} from 'redux-saga/effects';
 import {eventChannel} from 'redux-saga';
@@ -50,7 +51,18 @@ function* handleLogin() {
   });
 }
 
+function* saveFile(action) {
+  const {path, data} = action.payload;
+  const snapshot = yield call(firebase.postFile, path, data);
+  yield put(actions.fileUploadProgress(snapshot.downloadURL));
+}
+
+function* handleSavingFiles() {
+  yield takeEvery(actionTypes.requestSaveFile, saveFile);
+}
+
 export default [
   handleSyncingData,
   handleLogin,
+  handleSavingFiles,
 ];

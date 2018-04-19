@@ -1,16 +1,49 @@
-.player-list {
-  margin: 1rem;
-
+.score-screen {
   h1 {
-    display: inline-block;
-    border-bottom: solid 3px #0D3D65;
+    text-align: center;
+    color: white;
+    background: orange;
+    padding: 1rem;
   }
 
-  ul {
-    margin-top: 1rem;
+  &__player-scores {
+    display: flex;
+    flex-flow: row wrap;
 
-    li {
-      margin-top: 1rem;
+    .player-scores__player {
+      min-width: 50%;
+      max-width: 50%;
+      position: relative;
+
+      &--first {
+        min-width: 100%;
+        max-width: 100%;
+
+        .player_name {
+          font-size: 1rem;
+        }
+      }
+
+      img {
+        width: 100%;
+      }
+
+      .player__name {
+        text-align: center;
+        font-size: .75rem;
+      }
+
+      .player__score {
+        position: absolute;
+        color: white;
+        left: .25rem;
+        top: .25rem;
+        text-shadow: 1px 1px 1px #000;
+        background: rgba(0,0,0,.35);
+        border-radius: 1rem;
+        padding: .25rem;
+        font-size: 1rem;
+      }
     }
   }
 }

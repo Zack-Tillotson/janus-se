@@ -1,3 +1,10 @@
+import firebaseSelector from 'firebase/selector';
+
 export default function(state) {
-  return state.game;
+  const {uid} = firebaseSelector(state).authInfo || {};
+  const {[uid]: player} = state.game.players;
+  return {
+    ...state.game,
+    player: player || {},
+  };
 }

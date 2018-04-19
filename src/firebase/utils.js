@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/storage';
 import 'firebase/database';
 
 const app = firebase.initializeApp({
@@ -15,8 +16,12 @@ function connect(path) {
   return app.database().ref(path);
 }
 
+function connectStorage(path) {
+  return app.storage().ref(path);
+}
+
 function auth() {
   return app.auth();
 }
 
-export default {connect, auth};
+export default {connect, connectStorage, auth};

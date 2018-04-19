@@ -25,8 +25,16 @@ function* submitForm() {
   yield put(firebase.setData(`game/players/${uid}`, {name}));
 }
 
+function* monitorData() {
+  yield put(firebase.syncData('emotions'))
+  yield put(firebase.syncData('game'));
+}
+
 function* handleHomepage() {
   yield takeEvery(types.requestSubmit, submitForm);
+  yield takeEvery(function(action) {
+    return action.type === firebaseTypes.dataReceived && action.payload.path === '.info/auth' && action.payload.data;
+  }, monitorData);
 }
 
 export default [
