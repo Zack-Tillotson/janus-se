@@ -1,7 +1,9 @@
 import types from '../actionTypes';
+import firebaseTypes from 'firebase/actionTypes';
 
 const defaultState = {
   image: null,
+  isLoading: false,
 }
 
 export default function(state = defaultState, action) {
@@ -10,6 +12,7 @@ export default function(state = defaultState, action) {
       return {
         ...state,
         image: action.payload.image,
+        isLoading: false,
       };
     }
     case types.photoRejected: {
@@ -20,6 +23,18 @@ export default function(state = defaultState, action) {
     }
     case types.requestJoinGame: {
       return defaultState;
+    }
+    case firebaseTypes.requestSaveFile: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    case types.saveComplete: {
+      return {
+        ...state,
+        isLoading: false,
+      }
     }
   }
   return state;

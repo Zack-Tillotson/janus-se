@@ -48,25 +48,29 @@ function* handleGameStart() {
 }
 
 function* doSavePhoto(action) {
-  const {imageData} = action.payload;
-  const {uid} = (yield select(firebaseSelector)).authInfo;
+  try {
+    const {imageData} = action.payload;
+    const {uid} = (yield select(firebaseSelector)).authInfo;
 
-  yield put(firebaseActions.requestSaveFile(`photos/${uid}.png`, imageData));
+    yield put(firebaseActions.requestSaveFile(`photos/${uid}.png`, imageData));
 
-  const result = yield take(firebaseTypes.fileUploadProgress);
+    const result = yield take(firebaseTypes.fileUploadProgress);
 
-  if(result.payload.error) {
-    console.log('Error', result.payload.error);
-    return;
-  }
+    if(result.payload.error) {
+      console.log('Error', result.payload.error);
+      return;
+    }
 
-  const {fullUrl} = result.payload;
-  yield put(firebaseActions.setData(`game/players/${uid}/imageUrl`, fullUrl));
+    const {fullUrl} = result.payload;
+    yield put(firebaseActions.setData(`game/players/${uid}/imageUrl`, fullUrl));
 
-  const {emotion} = (yield select(selector));
+    const {emotion} = (yield select(selector));
 
-  const score = yield call(util.analyzeImage, emotion, fullUrl);
-  yield put(firebaseActions.setData(`game/players/${uid}/score`, score));
+    const score = yield call(util.analyzeImage, emotion, fullUrl);
+    yield put(firebaseActions.setData(`game/players/${uid}/score`, score));
+  } catch(e) {}
+
+  yield put(actions.saveComplete());
 }
 
 function* handlePhoto() {

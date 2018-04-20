@@ -48,6 +48,12 @@ function requestLogout() {
   }
 }
 
+function saveComplete() {
+  return {
+    type: types.saveComplete,
+  }
+}
+
 export default {
   requestStartGame,
   requestJoinGame,

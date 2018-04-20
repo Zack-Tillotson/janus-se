@@ -40,9 +40,7 @@ class TakePic extends React.Component {
       }
       navigator.mediaDevices.getUserMedia({
         audio: false,
-        video: {
-          facingMode: 'user',
-        },
+        video: true,
       })
         .then(stream => {
           this.video.srcObject = stream;
@@ -71,7 +69,7 @@ class TakePic extends React.Component {
 
   render() {
 
-    const {emotion, photo: {image}, doSavePhoto} = this.props;
+    const {emotion, photo: {image, isLoading}, doSavePhoto} = this.props;
 
     const handelTakePicture = () => {
       this.props.doTakePhoto(this.convertVideoToImage());
@@ -89,7 +87,7 @@ class TakePic extends React.Component {
         <h1>{emotion}</h1>
         <div className="take-pic__image">
           {!image && (
-            <video ref={ele => this.video = ele} />
+            <video ref={ele => this.video = ele} autoplay playsInline muted />
           )}
           {!!image && (
             <img src={image} />
@@ -97,17 +95,19 @@ class TakePic extends React.Component {
           <canvas ref={ele => this.canvas = ele} />
           {!!this.state.hasVideo && this.state.hasVideo}
         </div>
-        <div className="take-pic__controls">
-          {!image && (
-            <button onClick={handelTakePicture}>Take Picture</button>
-          )}
-          {!!image && (
-            <button onClick={handelSubmitPicture}>Submit</button>
-          )}
-          {!!image && (
-            <button className="button--alternate" onClick={handleRevertPicture}>Try Again</button>
-          )}
-        </div>
+        {!isLoading && (
+          <div className="take-pic__controls">
+            {!image && (
+              <button onClick={handelTakePicture}>Take Picture</button>
+            )}
+            {!!image && (
+              <button onClick={handelSubmitPicture}>Submit</button>
+            )}
+            {!!image && (
+              <button className="button--alternate" onClick={handleRevertPicture}>Try Again</button>
+            )}
+          </div>
+        )}
       </div>
     );
   }
