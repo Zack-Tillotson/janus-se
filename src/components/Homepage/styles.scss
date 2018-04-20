@@ -1,8 +1,38 @@
 .homepage {
+  text-align: center;
+
   &__logo {
-    width: 100vwh;
-    height: 50vh;
-    background: url('/assets/images/theater.svg') center center no-repeat no-repeat;
+    height: 40vh;
+    max-height: 25rem;
+    background: url('/assets/images/masks.jpg') center center no-repeat no-repeat;
+    background-size: cover;
+
+    @media (min-width: 500px) {
+      background-size: contain;
+    }
+  }
+
+  .logo__cta {
+    font-size: 1.75rem;
+    padding: 0 1rem;
+    color: darkblue;
+
+    @media (min-width: 500px) {
+      display: inline-block;
+      max-width: 50%;
+    }
+  }
+
+  .logo__details {
+    font-size: .75rem;
+    color: #444;
+    padding: 1rem;
+    text-align: justify;
+
+    @media (min-width: 500px) {
+      display: inline-block;
+      max-width: 30%;
+    }
   }
 
   &__form {

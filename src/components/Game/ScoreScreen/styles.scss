@@ -11,18 +11,10 @@
     flex-flow: row wrap;
 
     .player-scores__player {
-      min-width: 50%;
-      max-width: 50%;
+      flex: 1;
+      min-width: 250px;
+      max-width: 500px;
       position: relative;
-
-      &--first {
-        min-width: 100%;
-        max-width: 100%;
-
-        .player_name {
-          font-size: 1rem;
-        }
-      }
 
       img {
         width: 100%;
@@ -30,7 +22,8 @@
 
       .player__name {
         text-align: center;
-        font-size: .75rem;
+        font-size: 1.55rem;
+        margin-bottom: 3rem;
       }
 
       .player__score {
@@ -39,11 +32,15 @@
         left: .25rem;
         top: .25rem;
         text-shadow: 1px 1px 1px #000;
-        background: rgba(0,0,0,.35);
-        border-radius: 1rem;
-        padding: .25rem;
+        background: orange;
+        border-radius: 99rem;
+        padding: .45rem;
         font-size: 1rem;
       }
     }
+  }
+
+  &__controls {
+    margin: 1rem 1rem 3rem 1rem;
   }
 }

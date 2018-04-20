@@ -41,8 +41,6 @@ class TakePic extends React.Component {
       navigator.mediaDevices.getUserMedia({
         audio: false,
         video: {
-          width: {max: MAX_WIDTH},
-          height: {max: MAX_HEIGHT},
           facingMode: 'user',
         },
       })

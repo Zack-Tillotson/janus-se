@@ -2,7 +2,7 @@
 
   &__action-hint {
     color: #666;
-    font-size: .7rem;
+    font-size: 1rem;
     margin: 1rem 1rem .25rem 1rem;
   }
 
@@ -28,6 +28,7 @@
   }
 
   &__controls {
-    margin: 1rem;
+    margin: 1rem auto 3rem auto;
+    max-width: 25rem;
   }
 }
