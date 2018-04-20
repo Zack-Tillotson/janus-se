@@ -27,7 +27,7 @@ function ScoreScreen({players, emotion, doResetGame}) {
               {!!imageUrl && <img src={imageUrl} />}
               {!imageUrl && <img src="/assets/images/spinner.svg" />}
               <div className="player__name">{name}</div>
-              {!!score && (<div className="player__score">{parseInt(score*10000)/100}%</div>)}
+              {!!score && (<div className="player__score">{parseInt(score*100)}%</div>)}
             </li>
           );
         })}

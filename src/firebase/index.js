@@ -5,9 +5,9 @@ function requestAuth(service, onError) {
   return ref.signInAnonymously().catch(onError);
 }
 
-function requestUnauth(service, onError) {
-  const ref = utils.connect();
-  ref.unauth();
+function requestUnauth(onError) {
+  const ref = utils.auth();
+  return ref.signOut().catch(onError);
 }
 
 function syncConnection(onData) {

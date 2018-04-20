@@ -42,6 +42,12 @@ function photoRejected() {
   }
 }
 
+function requestLogout() {
+  return {
+    type: types.requestLogout,
+  }
+}
+
 export default {
   requestStartGame,
   requestJoinGame,
@@ -49,4 +55,5 @@ export default {
   photoReceived,
   requestSavePhoto,
   photoRejected,
+  requestLogout,
 }

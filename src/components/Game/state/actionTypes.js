@@ -7,4 +7,5 @@ export default {
   photoReceived: `${namespace}/photoReceived`,
   requestSavePhoto: `${namespace}/requestSavePhoto`,
   photoRejected: `${namespace}/photoRejected`,
+  requestLogout: `${namespace}/requestLogout`,
 }

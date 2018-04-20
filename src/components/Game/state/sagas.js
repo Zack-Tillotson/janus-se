@@ -6,6 +6,7 @@ import selector from './selector';
 
 import playerSelector from './playerSelector';
 
+import firebase from '../../../firebase';
 import firebaseSelector from 'firebase/selector';
 import firebaseTypes from 'firebase/actionTypes';
 import firebaseActions from 'firebase/actions';
@@ -29,10 +30,21 @@ function* doResetGame() {
   yield put(firebaseActions.setData(`game`, null));
 }
 
+function* doLogout() {
+  const {uid} = (yield select(firebaseSelector)).authInfo;
+  yield put(firebaseActions.setData(`game/players/${uid}`, null));
+  yield put(firebaseActions.setData(`players/${uid}`, null));
+  yield put(firebaseActions.requestSaveFile(`photos/${uid}.png`, null));
+  setTimeout(yield function*() {
+    yield call(firebase.requestUnauth);
+  }, 100);
+}
+
 function* handleGameStart() {
   yield takeEvery(types.requestStartGame, doStartGame);
   yield takeEvery(types.requestJoinGame, doJoinGame);
   yield takeEvery(types.requestResetGame, doResetGame);
+  yield takeEvery(types.requestLogout, doLogout);
 }
 
 function* doSavePhoto(action) {

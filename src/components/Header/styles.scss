@@ -1,18 +1,41 @@
 
 header {
   padding: 1rem;
-  color: #fff;
-  background: #0D3D65;
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: solid 1px #ccc;
 
   a {
     text-decoration: none;
+    flex: 0;
+    display: inline-block;
   }
 
   a:visited, a {
-    color: #fff;
+    color: rgba(125, 63, 152, 1);
+  }
+
+  .header__filler {
+    flex: 2;
   }
 
   h1 {
     font-size: 1.5em;
+  }
+
+  .controls__name {
+    display: inline-block;
+    cursor: pointer;
+    flex: 0;
+    line-height: 1.5rem;
+  }
+
+  .controls__logout {
+    display: inline-block;
+    cursor: pointer;
+    flex: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 1rem;
   }
 }

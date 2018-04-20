@@ -1,10 +1,10 @@
 const likelyhoods = {
-  UNKNOWN: .15,
-  VERY_UNLIKELY: .01,
-  UNLIKELY: .25,
-  POSSIBLE: .45,
-  LIKELY: .75,
-  VERY_LIKELY: .95,
+  UNKNOWN: () => 0,
+  VERY_UNLIKELY: () => Math.random() * .1 + 0, // 0-.1
+  UNLIKELY: () => Math.random() * .15 + .25, // .1-.25
+  POSSIBLE: () => Math.random() * .25 + .4, // .25-.6
+  LIKELY: () => Math.random() * .25 + .6, // .6-.85
+  VERY_LIKELY: () => Math.random() * .85 + .15, // .85-1
 };
 
 function analyzeImage(emotion, imageUri) {
@@ -36,7 +36,7 @@ function analyzeImage(emotion, imageUri) {
       try {
         likelihood = result.responses[0].faceAnnotations[0][`${emotion.toLowerCase()}Likelihood`];
       }catch(e){}
-      return likelyhoods[likelihood];
+      return likelyhoods[likelihood]();
     });
 
 }

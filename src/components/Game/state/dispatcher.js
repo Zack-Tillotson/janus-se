@@ -20,5 +20,8 @@ export default function(dispatch) {
     doDiscardPhoto() {
       dispatch(actions.photoRejected());
     },
+    doLogout() {
+      dispatch(actions.requestLogout());
+    }
   }
 }
