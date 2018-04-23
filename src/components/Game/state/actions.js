@@ -62,4 +62,5 @@ export default {
   requestSavePhoto,
   photoRejected,
   requestLogout,
+  saveComplete,
 }

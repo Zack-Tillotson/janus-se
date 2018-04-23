@@ -13,14 +13,11 @@ function Header({name, doLogout}) {
   return (
     <header>
       <a href="/">
-        <h1>Janus</h1>
+        <h1>{name || 'Janus'}</h1>
       </a>
       <div className="header__filler" />
       {!!name && (
-        <React.Fragment>
-          <div className="controls__name" onClick={handleLogoutClick}>{name}</div>
-          <img className="controls__logout" src="/assets/images/logout.svg" onClick={handleLogoutClick} />
-        </React.Fragment>
+        <div className="controls__logout" onClick={handleLogoutClick}>Log Out</div>
       )}
     </header>
   );

@@ -65,7 +65,16 @@ function setData(path = '/', data) {
 
 function postFile(path = '/', file) {
   const ref = utils.connectStorage(path);
-  return ref.putString(file, 'data_url');
+  try {
+    if(file) {
+      return ref.putString(file, 'data_url');
+    } else {
+      return ref.delete();
+    }
+  } catch(e) {
+    console.log('error firebase/setData', e);
+    return Promise.resolve();
+  }
 }
 
 export default {

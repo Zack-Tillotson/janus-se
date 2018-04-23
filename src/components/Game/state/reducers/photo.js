@@ -30,6 +30,12 @@ export default function(state = defaultState, action) {
         isLoading: true,
       }
     }
+    case "homepage/requestSubmit": {
+      return {
+        ...state,
+        isLoading: false,
+      }
+    }
     case types.saveComplete: {
       return {
         ...state,

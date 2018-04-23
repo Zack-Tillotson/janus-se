@@ -52,9 +52,14 @@ function* handleLogin() {
 }
 
 function* saveFile(action) {
-  const {path, data} = action.payload;
-  const snapshot = yield call(firebase.postFile, path, data);
-  yield put(actions.fileUploadProgress(snapshot.downloadURL));
+  try {
+    const {path, data} = action.payload;
+    const snapshot = yield call(firebase.postFile, path, data);
+    yield put(actions.fileUploadProgress((snapshot || {}).downloadURL));
+  } catch(e) {
+    console.log('firebase/saveFile error', e);
+    return Promise.resolve();
+  }
 }
 
 function* handleSavingFiles() {

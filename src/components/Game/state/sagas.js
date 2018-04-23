@@ -3,6 +3,7 @@ import {takeEvery, take, select, put, call} from 'redux-saga/effects';
 import util from './util';
 import types from './actionTypes';
 import selector from './selector';
+import actions from './actions';
 
 import playerSelector from './playerSelector';
 
