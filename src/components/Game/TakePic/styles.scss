@@ -28,8 +28,10 @@
   }
 
   &__controls {
-    margin: 1rem auto 3rem auto;
-    max-width: 25rem;
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
 
     button {
       min-width: auto;

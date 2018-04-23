@@ -87,7 +87,7 @@ class TakePic extends React.Component {
         <h1>{emotion}</h1>
         <div className="take-pic__image">
           {!image && (
-            <video ref={ele => this.video = ele} autoplay playsInline muted />
+            <video ref={ele => this.video = ele} autoPlay playsInline muted />
           )}
           {!!image && (
             <img src={image} />
